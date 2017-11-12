@@ -32,12 +32,12 @@ fun reformat(str: String,
              wordSeparator: Char = ' ') {
 }
 
-fun reformat2(str,
-              normalizeCase = true,
-              upperCaseFirstLetter = true,
-              divideByCamelHumps = false,
-              wordSeparator = '_') {
-}
+//fun reformat2(str,
+//              normalizeCase = true,
+//              upperCaseFirstLetter = true,
+//              divideByCamelHumps = false,
+//              wordSeparator = '_') {
+//}
 
 fun printHello(name: String?): Unit {
     if (name != null)
@@ -149,5 +149,5 @@ fun main(args: Array<String>) {
     //当该函数的所有参数都没有设置默认值，则需要这样调用：
     reformat("哈哈", true, true, false, '_')
 
-    reformat2("哈哈", wordSeparator = '_')
+//    reformat2("哈哈", wordSeparator = '_')
 }
