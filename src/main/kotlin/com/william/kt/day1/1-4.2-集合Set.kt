@@ -2,9 +2,20 @@ package com.william.kt.day1
 
 /**
  *
- * 集合类型Set:无序不重复 大小固定 元素类型不可变
+ * Set是最简单的一种集合。集合中的对象不按特定的方式排序，并且没有重复对象。
  *
  * 定义:setOf() 或 Set<类型>(元素1,元素2,元素13)
+ * Kotlin没有专门的语法用来创建set,可以使用标准库中的方法, 比如setOf(),mutableSetOf()。
+ *
+ * emptySet(): Set - 创建一个空的只读Set
+ * setOf(vararg T): Set - 创建一个只读Set
+ * mutableSetOf(vararg elements): MutableSet - 创建一个可变Set
+ *
+ *
+ * val size: Int - 集合中元素的数量
+ * fun isEmpty(): Boolean - 判断集合是否为空
+ * fun contains(E): Boolean - 判断集合中是否包含某一元素
+ * fun iterator(): Iterator - 返回该只读集合的元素的迭代器
  *
  * Created by sungang on 2017/11/10.
  */
@@ -26,6 +37,7 @@ fun main(args: Array<String>) {
     //元素计数count() 是否为空 isEmpty()
     println("数量:${no1stations.count()}")
     println("是否为空:${no1stations.isEmpty()}")
+    println("是否包含:${no1stations.contains("天府广场")}")
 
     //检查是否包含某个元素contains() 是否包含某个集合
     println("是否包含元素[世纪城]:${no1stations.contains("世纪城")}")

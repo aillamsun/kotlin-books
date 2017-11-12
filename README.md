@@ -5,7 +5,7 @@ kotlin-books 个人学习笔记记录
 
 # 目录
 
-## Day1 
+## Day1 基础部分
 
 > * 1-1常量
 > * 1-2-变量
@@ -23,16 +23,19 @@ kotlin-books 个人学习笔记记录
 > * 1-10函数
 > * 1-11Lambd和高级函数1
 
-# Day2
+# Day2 面向对象部分
 
 > * 1-1类定义及构造器
 > * 1-2普通属性和组合属性
 
 
+# Day3 协议/泛型/扩展
+
+> * 1-1
+> * 1-2
+
 # 基本类型
 ```kotlin
-package com.william.day1
-
 import com.sun.org.apache.xpath.internal.operations.Bool
 
 /**
@@ -75,8 +78,6 @@ fun main(args: Array<String>) {
 # 集合相关
 ## 1 数组
 ```kotlin
-package com.william.day1
-
 /**
  *
  * 集合数组类型 : 可重复有序 Array 索引从0 开始
@@ -164,13 +165,21 @@ fun main(args: Array<String>) {
 
 ## 2 Set
 ```kotlin
-package com.william.day1
-
 /**
  *
- * 集合类型Set:无序不重复 大小固定 元素类型不可变
+ * Set是最简单的一种集合。集合中的对象不按特定的方式排序，并且没有重复对象。
  *
  * 定义:setOf() 或 Set<类型>(元素1,元素2,元素13)
+ * Kotlin没有专门的语法用来创建set,可以使用标准库中的方法, 比如setOf(),mutableSetOf()。
+ *
+ * emptySet(): Set - 创建一个空的只读Set
+ * setOf(vararg T): Set - 创建一个只读Set
+ * mutableSetOf(vararg elements): MutableSet - 创建一个可变Set
+ * 
+ * val size: Int - 集合中元素的数量
+ * fun isEmpty(): Boolean - 判断集合是否为空
+ * fun contains(E): Boolean - 判断集合中是否包含某一元素
+ * fun iterator(): Iterator - 返回该只读集合的元素的迭代器
  *
  * Created by sungang on 2017/11/10.
  */
@@ -192,6 +201,8 @@ fun main(args: Array<String>) {
     //元素计数count() 是否为空 isEmpty()
     println("数量:${no1stations.count()}")
     println("是否为空:${no1stations.isEmpty()}")
+    println("是否包含:${no1stations.contains("天府广场")}")
+
 
     //检查是否包含某个元素contains() 是否包含某个集合
     println("是否包含元素[世纪城]:${no1stations.contains("世纪城")}")
@@ -232,5 +243,96 @@ fun main(args: Array<String>) {
 
 ## 3 Map
 ```kotlin
+/**
+ *
+ * 集合类型:Map
+ *
+ * 无序可重复 类似于字典概念 不可变
+ *
+ * key value
+ *
+ * Created by sungang on 2017/11/10.
+ */
+fun main(args: Array<String>) {
+    //定义一个map 使用元组 形式
+    var ariPorts = mapOf<String, String>(Pair("1", "One"), Pair("2", "Two"), Pair("3", "Three"))
+    //
+    val map = hashMapOf(1 to "one", 7 to "seven", 53 to "fifty-three")
+    println(map.javaClass)
+    println(ariPorts.javaClass)
 
+    //元素计数size 是否为空isEmpty()
+    println("ariPorts SIZE():${ariPorts.size}")
+    println("ariPorts 是否为空():${ariPorts.isEmpty()}")
+
+
+    //获取单个key 对应的value ： get()
+    println(ariPorts.get("1"))
+    println(ariPorts["1"])
+
+    //所有key 对应的value
+    for (v in ariPorts.values) {
+        println(v)
+    }
+    for ((k,v) in ariPorts){
+        println("$k -> $v")
+    }
+
+    //
+//    ariPorts.toMutableMap();
+//    ariPorts["1"] = "第一个元素"
+}
+```
+## 4,List
+```kotlin
+/**
+ *
+ * List 数组变更
+ *
+ *
+ *
+ * Created by sungang on 2017/11/10.
+ */
+fun main(args: Array<String>) {
+
+
+    //定义List 默认不可变
+    var itemList = emptyList<String>()
+    var itemList2 = listOf<String>("1", "2")
+
+
+    //可变List
+    var itemNewList = itemList.toMutableList();
+
+
+    //
+    println("长度:${itemNewList.count()}")
+    println("是否包含:${itemNewList.contains("1")}")
+    println("是否为空:${itemNewList.isEmpty()}")
+
+    itemNewList.add("1")
+    itemNewList.add("2")
+    itemNewList.add("2")
+
+    println("是否包含:${itemNewList.contains("1")}")
+    println("是否为空:${itemNewList.isEmpty()}")
+
+    //获取第一个
+    println(itemNewList.first())
+    println(itemNewList[0])
+
+    //获取出现的位置 indexOf()
+    println(itemNewList.indexOf("1"))
+    //获取最后一次出现的位置
+    println(itemNewList.lastIndexOf("2"))
+
+
+
+    //遍历 forEach
+    itemNewList.forEach(::println)
+    //for
+    for (book in itemNewList) {
+        println(book)
+    }
+}
 ```
