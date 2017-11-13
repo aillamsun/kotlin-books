@@ -133,21 +133,61 @@ private fun findFixPoint(): Double {
 //3 递归部分不能放到“try/catch/finally”中。
 
 
+// 将函数作为参数传递
+
+// 1 无参数函数调用
+class Hello {
+    fun say() {
+        println("Hello World")
+    }
+
+    /**
+     * 在 Kotlin 中无返回为 Unit
+     * 此方法接收一个无参数的函数并且无返回
+     * 使用参数名加 () 来调用
+     */
+    fun people(hello: () -> Unit) {
+        hello()
+    }
+
+
+    fun say(msg: String) {
+        println("Hello ${msg}")
+    }
+
+
+    fun people(args0: String, hello: (args1: String) -> Unit) {
+        hello(args0)
+        // hello(arg1) 这样调用将报错
+    }
+}
+
+
 /**
  * 函数使用
  */
 fun main(args: Array<String>) {
     var max = max(1, 2);
-    println(max)
+//    println(max)
 
     //成员函数，通过“.”方式访问：
-    Sample().foo()
+//    Sample().foo()
 
 
     //命名参数 可以通过该方式调用：
-    reformat("哈哈")
+//    reformat("哈哈")
     //当该函数的所有参数都没有设置默认值，则需要这样调用：
-    reformat("哈哈", true, true, false, '_')
+//    reformat("哈哈", true, true, false, '_')
 
 //    reformat2("哈哈", wordSeparator = '_')
+
+
+    //调用函数需使用参数名加 ()
+//    Hello().people { Hello().say() }
+
+    //传入给 arg0 的值貌似未生效 ???
+    //@param arg0 实参
+    //@param arg1 形参
+    //在people函数中，arg0 是实参，而 arg1 是形参，所以不能直接使用；
+    Hello().people("Kotiln") { Hello().say("World") }
 }

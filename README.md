@@ -49,6 +49,8 @@ kotlin-books 个人学习笔记记录
 > * 1-6泛型
 > * 1-7扩展
 
+## Day4 高级函数&使用场景
+
 # 基本类型
 ```kotlin
 import com.sun.org.apache.xpath.internal.operations.Bool
